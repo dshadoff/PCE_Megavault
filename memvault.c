@@ -180,6 +180,10 @@ flashwrite:
 	TAM	#5
 	
 	CSL
+	LDA	#$48
+	STA	$1807	; unlock BRAM (step 1)
+	LDA	#$75
+	STA	$1807	; unlock BRAM (step 2)
 	LDA	#$80
 	STA	$1807	; unlock BRAM
 	TII	$A000,_buffer,2048
@@ -373,6 +377,10 @@ bram2buf()
 	TAM	#2
 	
 	CSL
+	LDA	#$48
+	STA	$1807	; unlock BRAM (step 1)
+	LDA	#$75
+	STA	$1807	; unlock BRAM (step 2)
 	LDA	#$80
 	STA	$1807	; unlock BRAM
 	TII	$4000,_buffer,$0800
@@ -396,6 +404,10 @@ buf2bram()
 	TAM	#2
 	
 	CSL
+	LDA	#$48
+	STA	$1807	; unlock BRAM (step 1)
+	LDA	#$75
+	STA	$1807	; unlock BRAM (step 2)
 	LDA	#$80
 	STA	$1807	; unlock BRAM
 	TII	_buffer,$4000,$0800
