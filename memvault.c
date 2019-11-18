@@ -1522,14 +1522,14 @@ main()
    set_xres(320);
 
    /* title of page */
-   strcpy(default_date, "2019-10-19");
+   strcpy(default_date, "2019-11-18");
    strcpy(comment, "               ");
    strcpy(today_comment, "               ");
 
 
    set_font_pal(4);
    put_string("Multi-Backup Megavault", 8, TITLE_LINE);
-   put_string("v0.99", 34, TITLE_LINE);
+   put_string("v0.99a", 33, TITLE_LINE);
    set_font_pal(0);
 
 
