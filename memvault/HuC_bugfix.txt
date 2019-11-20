@@ -1,0 +1,54 @@
+Note:
+
+This was originally compiled with HuC v3.21
+
+In order for the additional font to be loaded properly, a bug fix needed to be applied
+to an assembler library file.  This bug fix has been submitted to all current maintainers
+of HuC source bases, but may not consistently be implemented.
+
+If you are using HuC v3.21, the fix applies to the file “huc_gfx.asm” (I was able to confirm
+the bug also existed in v3.99 versions available at the time of writing):
+
+Near the end of function “_load_font.3”, change the code. . .
+
+FROM this:
+- - start of context - -
+.l2:	  lda	<_cl
+	  stz	<_ch
+	  asl	A
+	  rol	<_ch
+	  asl	A
+	  rol	<_ch
+	  asl	A
+	  rol	<_ch
+	  asl	A
+	  rol	<_ch
+	  sta	<_cl
+	  ;jmp	load_vram
+- - end of context, start of change - -
+	  jmp	load_font
+- - end of change - -
+
+
+TO this:
+- - start of context - -
+.l2:	  lda	<_cl
+	  stz	<_ch
+	  asl	A
+	  rol	<_ch
+	  asl	A
+	  rol	<_ch
+	  asl	A
+	  rol	<_ch
+	  asl	A
+	  rol	<_ch
+	  sta	<_cl
+	  ;jmp	load_vram
+- - end of context, start of change - -
+	  stb	_font_color+1,<_ah
+	  lda	_font_color
+	  bne	.l3
+	  inc	A
+.l3:	  sta	<_al
+	  jmp	load_font
+- - end of change - -
