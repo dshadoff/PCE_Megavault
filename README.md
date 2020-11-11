@@ -22,3 +22,10 @@ instead, these sepcific sequences have been relocated to execute from user SRAM.
 
 This is prototype software, and as such has been minimally tested.
 Use at your own risk.
+
+Also in theis repository is the board layout information for EAGLE, in order
+to get these PC board fabricated.
+
+![Megavault HuCard](images/Megavault_Hu.jpg)
+
+
